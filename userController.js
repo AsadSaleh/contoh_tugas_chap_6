@@ -1,10 +1,9 @@
 const Prisma = require("@prisma/client");
-
 const prisma = new Prisma.PrismaClient();
 
 const getAllUsers = (req, res) => {
   prisma.userGame
-    .findMany()
+    .getAllUsers()
     .then((users) => {
       console.log("Read DB Success. Users: ", users);
       res.json(users);
@@ -111,7 +110,7 @@ const deleteUser = (req, res) => {
   prisma.userGame
     .delete({ where: { id: id } })
     .then((info) => {
-      res.json({ info });
+      res.json({ status: "berhasil menghapus user", info });
     })
     .catch((error) => {
       res.json({ status: "gagal menghapus user", message: error });

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Ini Document test</h1>
+    <a href="login">
+      <button style="background-color: red">Log out</button>
+    </a>
+
+    <a href="user/create">
+      <button style="background-color: green">Create User +</button>
+    </a>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Actions</th>
+      </tr>
+
+      <!-- bagian ini berulang-ulang -->
+      <% users.forEach(function(user) { %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.password %></td>
+        <td>
+          <a href="/user/update/<%= user.id %>"><button>Update</button></a>
+          <button class="delete-button" data-id="<%= user.id %>">Delete</button>
+        </td>
+      </tr>
+      <% }); %>
+      <!-- end of ulang-ulang -->
+    </table>
+  </body>
+  <script>
+    const buttons = document.querySelectorAll(".delete-button");
+    buttons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const id = button.dataset.id;
+        // AJAX
+        const yakin = window.confirm("Apakah kamu yakin?");
+        if (yakin) {
+          await fetch(`/api/user/${id}`, { method: "DELETE" });
+          window.location.reload();
+        }
+      });
+    });
+  </script>
+</html>

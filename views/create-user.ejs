@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>Halaman create user</h1>
+    <form action="/user/create" method="post">
+      <input
+        name="username"
+        placeholder="Username"
+        style="display: block; margin-bottom: 5px"
+      />
+      <input
+        name="password"
+        placeholder="Password"
+        style="display: block; margin-bottom: 5px"
+      />
+
+      <button>Create User</button>
+    </form>
+  </body>
+</html>
