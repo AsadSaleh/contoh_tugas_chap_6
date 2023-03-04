@@ -11,17 +11,20 @@ datasource db {
 }
 
 model UserGame {
-  id       Int    @id @default(autoincrement())
-  username String @unique
-  password String
+  id              Int              @id @default(autoincrement())
+  username        String           @unique
+  password        String
+  userGameBiodata UserGameBiodata?
 }
 
 model UserGameBiodata {
-  id     Int    @id @default(autoincrement())
-  name   String
-  city   String
-  age    Int
-  gender String
+  id         Int      @id @default(autoincrement())
+  name       String
+  city       String
+  age        Int
+  gender     String
+  userGame   UserGame @relation(fields: [userGameId], references: [id])
+  userGameId Int      @unique
 }
 
 model UserGameHistory {

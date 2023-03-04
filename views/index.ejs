@@ -21,6 +21,10 @@
         <th>ID</th>
         <th>Username</th>
         <th>Password</th>
+        <th>Fullname</th>
+        <th>City</th>
+        <th>Age</th>
+        <th>Gender</th>
         <th>Actions</th>
       </tr>
 
@@ -30,6 +34,11 @@
         <td><%= user.id %></td>
         <td><%= user.username %></td>
         <td><%= user.password %></td>
+        <!-- fullname, city, age, gender -->
+        <td><%= user.userGameBiodata?.fullname %></td>
+        <td><%= user.userGameBiodata?.city %></td>
+        <td><%= user.userGameBiodata?.age %></td>
+        <td><%= user.userGameBiodata?.gender %></td>
         <td>
           <a href="/user/update/<%= user.id %>"><button>Update</button></a>
           <button class="delete-button" data-id="<%= user.id %>">Delete</button>

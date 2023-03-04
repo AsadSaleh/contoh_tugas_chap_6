@@ -25,7 +25,9 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 app.get("/", async (req, res) => {
-  const users = await prisma.userGame.findMany(); // baca database
+  const users = await prisma.userGame.findMany({
+    include: { userGameBiodata: true },
+  }); // baca database
   res.render("index", { users: users }); // masukin data ke "index.ejs", lalu ditampilkan.
 });
 app.get("/user/create", (req, res) => {
