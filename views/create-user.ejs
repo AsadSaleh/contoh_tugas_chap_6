@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1>Halaman create user</h1>
-    <form action="/user/create" method="post">
+    <form action="/user/create" method="post" id="create-user">
       <input
         name="username"
         placeholder="Username"
@@ -24,4 +24,17 @@
       <button>Create User</button>
     </form>
   </body>
+  <script>
+    // const form = document
+    //   .querySelector("#create-user")
+    //   .addEventListener("submit", () => {
+    //     // saya mau manggil endpoint POST /api/user
+
+    //     // AJAX: Asynchronous javascript and xml
+    //     fetch("/api/user", {
+    //       method: "POST",
+    //       body: JSON.stringify(new FormData(form)),
+    //     });
+    //   });
+  </script>
 </html>
