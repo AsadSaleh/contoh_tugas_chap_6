@@ -10,6 +10,7 @@
   <body>
     <h1>Halaman create user</h1>
     <form action="/user/create" method="post" id="create-user">
+      <h4>User Game</h4>
       <input
         name="username"
         placeholder="Username"
@@ -20,8 +21,46 @@
         placeholder="Password"
         style="display: block; margin-bottom: 5px"
       />
+      <br />
+      <h4>User Game Biodata</h4>
+      <input
+        name="fullname"
+        placeholder="Your name"
+        style="display: block; margin-bottom: 5px"
+      />
+      <input
+        name="city"
+        placeholder="City"
+        style="display: block; margin-bottom: 5px"
+      />
+      <input
+        name="age"
+        placeholder="Age"
+        style="display: block; margin-bottom: 5px"
+      />
+      <div>
+        <input
+          id="radio-male"
+          type="radio"
+          name="gender"
+          value="male"
+          style="display: inline-block; margin-bottom: 5px"
+        />
+        <label for="radio-male">Laki-laki</label>
+      </div>
 
-      <button>Create User</button>
+      <div>
+        <input
+          id="radio-female"
+          type="radio"
+          name="gender"
+          value="female"
+          style="display: inline-block; margin-bottom: 5px"
+        />
+        <label for="radio-female">Perempuan</label>
+      </div>
+
+      <button style="margin-top: 10px">Create User</button>
     </form>
   </body>
   <script>

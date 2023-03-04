@@ -58,7 +58,18 @@ app.post("/user/create", async (req, res) => {
   // panggil database:
   // lalu kalau berhasil, redirect user ke halaman "/"
   await prisma.userGame.create({
-    data: { username, password },
+    data: {
+      username,
+      password,
+      userGameBiodata: {
+        create: {
+          age: Number(req.body.age),
+          city: req.body.city,
+          gender: req.body.gender,
+          name: req.body.fullname,
+        },
+      },
+    },
   });
   res.redirect("/");
 });
