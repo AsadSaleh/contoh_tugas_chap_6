@@ -1,0 +1,18 @@
+<nav>
+  <a>Home</a>
+  <a>About</a>
+  <a>Contact</a>
+
+  <% if (true) { %>
+  <button id="logoutButton" style="background-color: red; color: white">
+    LOGOUT
+  </button>
+  <% } %>
+</nav>
+<script>
+  const logoutButton = document
+    .getElementById("logoutButton")
+    .addEventListener("click", () => {
+      console.log("logoutButton di click!!!");
+    });
+</script>

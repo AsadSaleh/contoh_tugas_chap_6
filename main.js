@@ -7,6 +7,15 @@ const {
   deleteUser,
 } = require("./userController");
 const Prisma = require("@prisma/client");
+const {
+  userUpdateScreenController,
+  userCreateScreenController,
+  userListScreenController,
+} = require("./controllers/userController");
+const {
+  loginScreenController,
+  loginSubmissionController,
+} = require("./controllers/authController");
 const prisma = new Prisma.PrismaClient();
 
 const app = express();
@@ -17,41 +26,17 @@ app.use(
     extended: true,
   })
 );
+
 app.use("/static", express.static("public"));
 app.set("view engine", "ejs");
 
-// Route untuk page (HTML):
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-app.get("/", async (req, res) => {
-  const users = await prisma.userGame.findMany({
-    include: { userGameBiodata: true },
-  }); // baca database
-  res.render("index", { users: users }); // masukin data ke "index.ejs", lalu ditampilkan.
-});
-app.get("/user/create", (req, res) => {
-  res.render("create-user");
-});
-app.get("/user/update/:id", async (req, res) => {
-  const id = Number(req.params.id); // "15" => 15
+app.get("/", userListScreenController);
+app.get("/user/create", userCreateScreenController);
+app.get("/user/update/:id", userUpdateScreenController);
 
-  const user = await prisma.userGame.findUnique({ where: { id } });
-  res.render("update-user", { user });
-});
+app.get("/login", loginScreenController);
+app.post("/login", loginSubmissionController);
 
-// Route untuk handle Sumbit form:
-app.post("/login", (req, res) => {
-  const { username, password } = req.body;
-
-  // kalau di hit dengan data yang sesuai: kita redirect ke halaman utama.
-  // kalau di hit dengan data yang salah: kita biarkan di halaman login.
-  if (username === "admin" && password === "superadminkerenabis") {
-    res.redirect("/");
-  } else {
-    res.redirect("/login");
-  }
-});
 app.post("/user/create", async (req, res) => {
   const { username, password } = req.body;
 
